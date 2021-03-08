@@ -16,15 +16,15 @@ def start_game():
 
 
     tries = 0
-    highscore = 0
+    highscore = 100
     answer = random.randint(1, 10)
 
     while True:
         try:
             guess = int(input("Pick a number between 1 and 10:\n"))
-        except:
+        except ValueError:
             print("That was an invalid guess.")
-            guess = int(input("Pick a number between 1 and 10:\n"))
+            continue
         if guess >= 1 and guess <= 10:
 
             if guess < answer:
@@ -42,10 +42,11 @@ def start_game():
                 play_again = input("Would you like to play again? [y]es/[n]o: ").lower()
 
                 if play_again == 'y':
-                    if tries > highscore:
+                    if tries < highscore:
                         highscore = tries
                     print(f"The highscore is {highscore}")
                 else:
+                    print("Thanks for playing! Have a great day")
                     break
 
 
